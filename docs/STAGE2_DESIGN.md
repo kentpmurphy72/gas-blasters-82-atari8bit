@@ -685,7 +685,7 @@ Atari800 NTSC/PAL and hardware were **NOT RUN in the Codex build environment**. 
 
 ## 28. Stage 2 v0.4 — Off-Road Consequences (approved design, 2026-11-14)
 
-**Decision:** The user approved the complete off-road consequence design, including the proposed traction values, separate accumulated grass timer, orange/red crash treatment, shared lives/retry loop, non-stacking steering penalties, and exact same-tick outcome order. These approved rules are now implemented in the separate [v0.4 XEX](../assets/stage2_v04/README.md), with native CPU test/profile evidence. **Actual Atari800/hardware tests are NOT RUN in the build environment; user gameplay acceptance is pending.**
+**Decision:** The user approved the complete off-road consequence design, including the proposed traction values, separate accumulated grass timer, orange/red crash treatment, shared lives/retry loop, non-stacking steering penalties, and exact same-tick outcome order. These approved rules are now implemented in the separate [v0.4 XEX](../assets/stage2_v04/README.md), with native CPU test/profile evidence. **Codex did not run Atari800 or physical hardware; the user subsequently played v0.4 in Atari800 and approved the behavior on 2026-11-26.**
 
 **Branch:** `feature/stage2-offroad-consequences-v0.4`, created from accepted/tagged v0.3 commit `c0c68285c1fc947c89520a5123e462bd98509e1e`. Implement a separate, versioned standalone 6502 XEX under `assets/stage2_v04/`; preserve every prior XEX, source, manifest, test, tag and the accepted v0.3 road geometry. Codex receives a concise implementation prompt in the conversation; **Section 28 is the sole authoritative v0.4 specification stored in the repository**.
 
@@ -782,3 +782,14 @@ The [factual validation report](../assets/stage2_v04/validation.md) distinguishe
 native CPU/GTIA-register-alias checks from actual Atari800 and hardware coverage.
 All historical artifacts remain unchanged. No v0.4 acceptance, merge, tag or
 branch deletion is implied by implementation.
+
+
+## 29. Stage 2 v0.4 user acceptance and release closeout — 2026-11-26
+
+**User acceptance:** The user playtested the standalone `assets/stage2_v04/GasBlasters82_Stage2_Offroad_v04.xex` in Atari800, reported **“Works as expected”**, and explicitly **approved Stage 2 v0.4**. This confirms the playable off-road-consequences milestone; it is not a claim of separately verified PAL-mode, exhaustive manual test cases, or physical Atari 800XL hardware coverage.
+
+**Implementation and independent evidence:** Codex's committed [v0.4 validation report](../assets/stage2_v04/validation.md) records **35 v0.4 native CPU tests, 114 earlier regressions, and five validators passing**. Its environment did **not** run Atari800 or real hardware. Versioned XEX SHA-256: `241554e62bf7be97c5ae505b599e9ababff2f34462c5ba6d13e74d9d2628a9c1`; verified preservation inventory covers **207 historical assets/tools**. The user's Atari800 acceptance is separate evidence from these automated results.
+
+**Accepted scope:** Fixed 14/7/66/7/14 road bands; unshaken-center terrain classification; independent grass exposure with shoulder pause/pavement reset; 12/10/8 non-compounding steering; skid/shake/smoke and POKEY warnings; distinct orange/red off-road crash; existing green GAS failure, lives, FIRE retry and pharmacy success; GAS→grass→arrival same-tick priority. **Not accepted or implemented:** winding/narrow roads, forks, traffic/police/hazmat, four-way car blasts, Gas-Nix pickups, Stage 3, or full-game integration.
+
+**Release action authorization:** On 2026-11-26 the user instructed completion of the v0.4 documentation and closeout. Record actual merge, tag and branch retirement only after checking live Git references. Do not rewrite earlier release tags. The next proposed milestone (not yet approved) is v0.5 winding/narrowing roads, with the historical 40%-minimum and ~4-second narrowing proposal to be reviewed against today's 61%-normal pavement.
