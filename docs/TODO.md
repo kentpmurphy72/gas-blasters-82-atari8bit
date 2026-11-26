@@ -1,7 +1,7 @@
 # Gas Blasters '82 — Project To-Do List
 
-**Version:** 0.53  
-**Date:** 2026-11-14  
+**Version:** 0.54  
+**Date:** 2026-11-26  
 **Target:** Atari 800XL  
 **Status:** Stage 1 v0.5 implemented and accepted as a playable prototype; remaining full game in design/development  
 **Companion documents:** [Game Design](GAME_DESIGN.md) · [Art Assets](ART_ASSETS.md)
@@ -9,6 +9,12 @@
 > Living checklist. An unchecked item is not necessarily an approved requirement; some items are proposed work that depends on design decisions. Update this file as tasks are finished or scope changes.
 
 - **PMG regression and v2.1 hotfix — 2026-10-30:** The first real Atari800 test of the alternate PMG title **v2 failed visually** (stray cyan/white pixels overlapping text/background). Bug confirmed: DMACTL set to $2E **double-line** although 2 KB PMG data was built for **single-line**. The v2 validator mistakenly expected $2E as well. A separate v2.1 XEX and corrected source now use $3E, an adjusted 56-line vertical origin, and explicit tests for correct DMACTL and cleared PM rows over the text. **v2.1 was tested in Atari800 on 2026-11-01 and was visually rejected:** scattered PMG highlights still degrade the logo, Billy and car. The overlay intentionally adds about 220 disconnected pixels; a heavy DLI handler also has insufficient cycle headroom for one scanline. Do not adopt v2/v2.1; preserve the accepted v1 title. No checklist completion change. **Known-good v1 is unaffected**. Checklist completion count is unchanged until the corrected PMG screen passes visually.
+## Stage 2 v0.4 accepted after Atari800 playtest — 2026-11-26
+
+- **User:** Played the standalone v0.4 XEX in Atari800; reported **“Works as expected”** and approved v0.4. This is gameplay acceptance, not a claim of separate PAL/hardware or itemized manual test coverage.
+- **Codex evidence:** 35 new-version CPU tests, 114 prior regressions, five validators PASS; 207 historical asset/tool blobs preserved. See [validation](../assets/stage2_v04/validation.md) and [Stage 2 §29](STAGE2_DESIGN.md).
+- **Checklist:** Four v0.4 implementation, effects, tests and acceptance tasks completed. **89 complete / 89 open / 178 total**. Full Stage 2 remains open; winding/forks/enemies/car blasts are not implemented. Git release refs must be verified separately.
+
 ## Stage 2 v0.4 off-road implementation evidence
 
 - **Implemented / CPU verified:** authoritative §28 off-road classification,
@@ -17,17 +23,14 @@
   off-road vs green GAS failure, shared lives/retry and GAS→grass→arrival priority.
 - New standalone [v0.4 XEX/source/build/tests/profile](../assets/stage2_v04/README.md)
   on the existing feature branch; all accepted prior artifacts are preserved.
-- **Still open:** actual Atari800 NTSC/PAL visual/sound/handling tests and user
-  acceptance. No merge/tag/branch deletion. Winding/forks/traffic/blasts/pickups,
-  Stage 3 and full-game integration remain outside v0.4. Broad acceptance totals
-  and future-stage checkboxes remain unchanged pending gameplay approval.
+- **Acceptance (2026-11-26):** User played the v0.4 standalone XEX in Atari800, reported **“Works as expected”**, and approved the milestone. Codex's environment did not run Atari800; independent PAL-mode and physical hardware testing are not established. Winding/forks/traffic/blasts/pickups, Stage 3 and integration remain future work.
 
 ## Stage 2 v0.4 off-road design approved — 2026-11-14
 
 - **Approval / scope:** The user approved v0.4's new car-center classification and **12/10/8 Q4** pavement/shoulder/grass steering; **600 units / 2.0 accumulated grass seconds** (+5 NTSC / +6 PAL per frame); grass run / shoulder pause / pavement reset; progressive skid/shake/smoke/audio; distinct **orange/red off-road crash**, one-life penalty and existing FIRE retry loop; strongest-of-surface-and-pressure handling; and **GAS→grass→arrival** same-tick priority. See [Stage 2 §28](STAGE2_DESIGN.md).
 - **Git baseline verified:** Immutable `stage2-v0.3` and `main` both reference `c0c68285c1fc947c89520a5123e462bd98509e1e`. Old `feature/stage2-road-zones-v0.3` branch is deleted. New design/implementation branch: `feature/stage2-offroad-consequences-v0.4`.
 - **Status:** Design/implementation assignment only. **No v0.4 6502 XEX, CPU tests, Atari800 playtest or hardware validation yet.** The four v0.4 implementation/test checklist items below remain unchecked; no accepted Stage 1/Stage 2 XEX changed.
-- **Current checklist counts:** **85 completed / 93 open / 178 total**. Historical counts in dated progress notes below are retained as historical snapshots.
+- **Current checklist counts:** **85 completed / 93 open / 178 total** (historical design-approval snapshot). Historical counts in dated progress notes below are retained as historical snapshots.
 
 ## Stage 2 v0.3 geometry prototype accepted — 2026-11-11
 
@@ -272,10 +275,10 @@
 - [x] Implement continuous side-to-side steering (no fixed-lane snapping).
 - [x] **v0.3 geometry-only XEX:** Implemented straight-road native **14/7/66/7/14** bands in a new standalone XEX; preserved accepted v0.2-r1 mechanics, with no off-road penalties. CPU and geometry tests passed; user accepted the playable prototype.
 - [x] **v0.3 Atari800 geometry gate:** User played the versioned XEX and reported **"Looks good and works great"**. Automated geometry/boundaries, HUD isolation, PMG visibility and r1 regressions passed. Exact video mode and individual min/default/max manual checks were not separately enumerated.
-- [ ] **v0.4:** Implement center-of-car classification on approved **14/7/66/7/14** straight bands (x=14/21/87/94 transitions); apply surface steering **12/10/8 Q4** and only the stronger of existing GAS-pressure vs off-road penalties. Winding-road per-Y boundaries are deferred.
-- [ ] **v0.4:** Implement independent **600/300-second grass accumulator** (+5 NTSC/+6 PAL per active frame), grass run/resume, shoulder pause, pavement reset; add distinct **orange/red** grass crash with one-life loss and existing FIRE/lives/retry resets; enforce **GAS 100% → grass 2.0s → pharmacy** event priority and one terminal latch.
-- [ ] **v0.4:** Implement staged skid (0–0.5s), bounded visual shake (0.5–1s), smoke + normal POKEY warning (1–1.5s), heavy smoke + critical warning (1.5–2s), with off-road stages pausing on shoulder and clearing on pavement; preserve GAS HUD and car visibility.
-- [ ] **v0.4 validation and user gate:** Build a new native standalone versioned XEX, source/listing, manifest, reproducible tools and CPU tests; verify center boundaries, 600-unit NTSC/PAL timing, steering interactions, all terminal ties, exactly-one-life/replay, memory/cycles and historical regressions; provide an Atari800 NTSC/PAL manual checklist. Do not tag/merge/delete branch before Kent's Atari800 acceptance.
+- [x] **v0.4:** Implement center-of-car classification on approved **14/7/66/7/14** straight bands (x=14/21/87/94 transitions); apply surface steering **12/10/8 Q4** and only the stronger of existing GAS-pressure vs off-road penalties. Winding-road per-Y boundaries are deferred.
+- [x] **v0.4:** Implement independent **600/300-second grass accumulator** (+5 NTSC/+6 PAL per active frame), grass run/resume, shoulder pause, pavement reset; add distinct **orange/red** grass crash with one-life loss and existing FIRE/lives/retry resets; enforce **GAS 100% → grass 2.0s → pharmacy** event priority and one terminal latch.
+- [x] **v0.4:** Implement staged skid (0–0.5s), bounded visual shake (0.5–1s), smoke + normal POKEY warning (1–1.5s), heavy smoke + critical warning (1.5–2s), with off-road stages pausing on shoulder and clearing on pavement; preserve GAS HUD and car visibility.
+- [x] **v0.4 validation and user gate:** Build a new native standalone versioned XEX, source/listing, manifest, reproducible tools and CPU tests; verify center boundaries, 600-unit NTSC/PAL timing, steering interactions, all terminal ties, exactly-one-life/replay, memory/cycles and historical regressions; provide an Atari800 NTSC/PAL manual checklist. Do not tag/merge/delete branch before Kent's Atari800 acceptance.
 - [ ] Revisit future winding road narrowing **from/to 61%-normal pavement**; revalidate old 40%-minimum/~4s transitions and ~6.5% shoulders during later prototyping.
 - [ ] **Playtest and validate** the 40% minimum, four-second narrowing/widening, shoulder safety, and recoverability against enemy ramming; tune only if necessary.
 - [ ] Prototype a **scrolling center-divider island** creating left/right branches and a green upward arrow near top on the preferred side. Start flashes **~2 seconds before island first appears**; animate **0.25s ON / 0.25s OFF**, keep flashing during fork approach, and remove when Billy passes the fork's decision point. Validate timing, visibility and geometry in the chosen graphics mode.
