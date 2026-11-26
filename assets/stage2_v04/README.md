@@ -3,7 +3,7 @@
 Standalone native 6502 XEX for stock Atari 800XL / 64 KB, based on accepted v0.3.
 Authoritative gameplay specification: `docs/STAGE2_DESIGN.md` §28. All historical
 XEX/source/manifest/test files are preserved. **Implemented and CPU verified;
-Atari800/hardware NOT RUN here; user gameplay acceptance pending.**
+Codex did not run Atari800/hardware; user subsequently playtested v0.4 in Atari800 on 2026-11-26 and accepted its behavior. No independently documented PAL-mode or physical 800XL testing.**
 
 ## Build, test and launch
 
