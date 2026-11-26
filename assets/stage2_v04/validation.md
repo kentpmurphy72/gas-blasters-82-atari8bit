@@ -1,7 +1,7 @@
 # Stage 2 v0.4 — actual validation results
 
 **35 v0.4 tests, 114 historical regression tests and five validators: PASS.**
-**Atari800 NTSC/PAL: NOT RUN. Physical hardware: NOT RUN. User acceptance pending.**
+**Build environment:** Atari800 NTSC/PAL NOT RUN; physical hardware NOT RUN. **Subsequent user evidence (2026-11-26):** v0.4 playtested in Atari800, “Works as expected,” milestone approved. Exact video mode, independent PAL-mode run and physical hardware are not separately verified.
 
 XEX: `GasBlasters82_Stage2_Offroad_v04.xex` (26,710 bytes).
 SHA-256: `241554e62bf7be97c5ae505b599e9ababff2f34462c5ba6d13e74d9d2628a9c1`.
@@ -92,3 +92,8 @@ emulation. Exact particle/shake/sound tuning remains provisional. The brief
 reset, pressure steering, failure colors/lives/FIRE and pharmacy flow.
 
 No merge, tag or branch deletion; awaiting explicit user gameplay acceptance.
+
+
+## Subsequent user acceptance — 2026-11-26
+
+After the above Codex build-time tests and report, the user played the v0.4 standalone XEX in Atari800, reported **“Works as expected”**, and explicitly approved the milestone. No new automated tests were run in this documentation-only acceptance update. The original build environment's `Atari800: NOT RUN` remains accurate; no separate PAL-mode or physical Atari 800XL testing is claimed.
