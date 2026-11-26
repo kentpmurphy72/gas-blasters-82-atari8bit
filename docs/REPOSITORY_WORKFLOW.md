@@ -53,7 +53,7 @@ The tags and full history survive the deletion of the five old feature branches.
 
 - **v0.3 completed:** `stage2-v0.3` and `main` both resolve to accepted SHA `c0c68285c1fc947c89520a5123e462bd98509e1e`; `feature/stage2-road-zones-v0.3` no longer exists on the remote. No tag was rewritten.
 - **v0.4 feature branch:** `feature/stage2-offroad-consequences-v0.4` created directly from that tag/main SHA. The user approved design rules in [Stage 2 §28](STAGE2_DESIGN.md), including non-stacking steering, two-second grass timer, separate orange/red crash and GAS→grass→arrival terminal priority.
-- **Status discipline:** v0.4 approval is **design approval only**, not an accepted XEX. Source, build, validation and user Atari800 playtesting remain pending. Do not tag, merge, or delete the v0.4 feature branch without subsequent authorization.
+- **Updated status (2026-11-26):** The native v0.4 XEX was built and CPU-tested (35 v0.4 tests, 114 regressions, five validators PASS); the user played it in Atari800, said **“Works as expected”**, and explicitly approved v0.4. The user then authorized documentation updates, release tagging, integration into `main` and feature-branch retirement. Record Git closeout operations only after verifying they actually occurred. No separate PAL-mode or hardware result is implied.
 
 ## Changes that cross stages
 
